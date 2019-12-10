@@ -26,6 +26,8 @@
 		<module>subject</module>
 		<module>app-main</module>
 		<module>appstarter</module>-->
+		<module>subject</module>
+		<module>student</module>
 	</modules>
 	<!-- <build>
 		<plugins>
