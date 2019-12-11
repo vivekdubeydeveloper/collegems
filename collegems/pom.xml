@@ -28,6 +28,7 @@
 		<module>appstarter</module>-->
 		<module>subject</module>
 		<module>student</module>
+		<module>apigateway</module>
 	</modules>
 	<!-- <build>
 		<plugins>

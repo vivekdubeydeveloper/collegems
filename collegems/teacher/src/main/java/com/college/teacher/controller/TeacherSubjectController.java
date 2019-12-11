@@ -46,10 +46,5 @@ public class TeacherSubjectController {
 		return rb;
 	}
 
-	// @LoadBalanced
-	@Bean
-	RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
-
+	
 }

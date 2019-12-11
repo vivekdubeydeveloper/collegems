@@ -57,5 +57,10 @@
 			<artifactId>teacher</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<!--  <dependency>
+			<groupId>com.college.apigateway</groupId>
+			<artifactId>apigateway</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>-->
 	</dependencies>
 </project>
