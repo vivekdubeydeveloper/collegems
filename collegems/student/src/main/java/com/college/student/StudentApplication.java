@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 public class StudentApplication {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		SpringApplication.run(StudentApplication.class, args);
 	}
 

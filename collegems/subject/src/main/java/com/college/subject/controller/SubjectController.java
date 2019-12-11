@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.college.subject.entity.Subject;
 import com.college.subject.model.ResponseBean;
 import com.college.subject.service.SubjectService;
+import com.college.subject.util.MessageConstant;
 
 @RestController
 public class SubjectController {
@@ -42,7 +43,7 @@ public class SubjectController {
 	public ResponseBean addSubject(@RequestBody Subject subject) {
 		subjectService.addUpdateSubject(subject);
 		ResponseBean rb=new ResponseBean();
-		rb.setMsg("Object created successfuly. You can access object using id "+subject.getId());
+		rb.setMsg(MessageConstant.OBJECT_CREATED_SUCCESSFULLY+subject.getId());
 		return rb;
 	}
 	
@@ -52,7 +53,7 @@ public class SubjectController {
 	public ResponseBean updateSubject(@RequestBody Subject subject) {
 		subjectService.addUpdateSubject(subject);
 		ResponseBean rb=new ResponseBean();
-		rb.setMsg("Object updated successfuly.");
+		rb.setMsg(MessageConstant.OBJECT_UPDATED_SUCCESSFULLY);
 		return rb;
 	}
 	
@@ -62,7 +63,7 @@ public class SubjectController {
 	public ResponseBean deleteSubjectById(@PathVariable("id") int id) {
 		subjectService.deleteSubjectById(id);
 		ResponseBean rb=new ResponseBean();
-		rb.setMsg("Object deleted successfuly.");
+		rb.setMsg(MessageConstant.OBJECT_DELETED_SUCCESSFULLY);
 		return rb;
 	}
 	

@@ -11,6 +11,7 @@ import com.college.subject.dao.SubjectDAO;
 import com.college.subject.entity.Subject;
 import com.college.subject.exception.SubjectNotFound;
 import com.college.subject.service.SubjectService;
+import com.college.subject.util.MessageConstant;
 
 @Service
 public class SubjectServiceImpl implements SubjectService {
@@ -28,7 +29,7 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public Subject getSubject(int id) {
-		return subjectDAO.findById(id).orElseThrow(()->new SubjectNotFound("No Subject Found For This Id"));
+		return subjectDAO.findById(id).orElseThrow(()->new SubjectNotFound(MessageConstant.NO_SUBJECT_FOUND));
 	}
 
 	@Override
