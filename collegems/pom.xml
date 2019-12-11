@@ -29,6 +29,7 @@
 		<module>subject</module>
 		<module>student</module>
 		<module>apigateway</module>
+		<module>servicediscovery</module>
 	</modules>
 	<!-- <build>
 		<plugins>
