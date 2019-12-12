@@ -11,14 +11,18 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name="subject")
 public class Subject {
 
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@ApiModelProperty(notes = "Name of the Subject",name="name",required=true,value="Math")
 	@Column(name="name")
 	private String name;
 	

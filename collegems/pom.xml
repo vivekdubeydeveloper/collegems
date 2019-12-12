@@ -22,22 +22,12 @@
 	</properties>
 	<modules>
 		<module>teacher</module>
-		<!--  <module>student</module>
-		<module>subject</module>
-		<module>app-main</module>
-		<module>appstarter</module>-->
+		<!-- <module>student</module> <module>subject</module> <module>app-main</module> 
+			<module>appstarter</module> -->
 		<module>subject</module>
 		<module>student</module>
 		<module>apigateway</module>
 		<module>servicediscovery</module>
 	</modules>
-	<!-- <build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build> -->
 	
 </project>
