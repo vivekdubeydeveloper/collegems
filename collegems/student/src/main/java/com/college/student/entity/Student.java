@@ -17,31 +17,39 @@ public class Student {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	@Column(name="roll_no")
+	private int rollno;
 	
 	@Column(name="name")
 	private String name;
 	
-	@CreationTimestamp
-	@Column(name="CREATED_ON")
-	private LocalDateTime createdOn;
-	
-	public int getId() {
-		return id;
+	@Column(name="address")
+	private String address;
+
+
+	public int getRollno() {
+		return rollno;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public void setRollno(int rollno) {
+		this.rollno = rollno;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public LocalDateTime getCreatedOn() {
-		return createdOn;
+
+	public String getAddress() {
+		return address;
 	}
-	public void setCreatedOn(LocalDateTime createdOn) {
-		this.createdOn = createdOn;
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
+	
+	
 }

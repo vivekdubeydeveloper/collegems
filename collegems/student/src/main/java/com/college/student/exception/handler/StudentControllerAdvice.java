@@ -5,15 +5,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.college.subject.exception.SubjectNotFound;
-import com.college.subject.model.ResponseBean;
+import com.college.student.exception.StudentNotFound;
+import com.college.student.model.ResponseBean;
+
 
 @RestControllerAdvice
 public class StudentControllerAdvice {
 	
-	@ExceptionHandler(SubjectNotFound.class)
+	@ExceptionHandler(StudentNotFound.class)
 	@ResponseStatus(value=HttpStatus.NOT_FOUND)
-	public ResponseBean handleUserNotFound(SubjectNotFound subjectNotFound){
+	public ResponseBean handleUserNotFound(StudentNotFound subjectNotFound){
 		ResponseBean rb=new ResponseBean();
 		rb.setError(true);
 		rb.setErrorMsg(subjectNotFound.getMessage());

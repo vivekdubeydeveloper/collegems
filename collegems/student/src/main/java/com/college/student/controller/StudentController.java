@@ -10,15 +10,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.college.student.entity.Student;
+import com.college.student.model.ResponseBean;
 import com.college.student.service.StudentService;
-import com.college.subject.model.ResponseBean;
-import com.college.subject.util.MessageConstant;
+import com.college.student.util.MessageConstant;
 
 @RestController
+@RequestMapping("/api/v1")
 public class StudentController {
 	
 	@Autowired
@@ -43,7 +45,7 @@ public class StudentController {
 	public ResponseBean addStudent(@RequestBody Student student) {
 		studentService.addUpdateStudent(student);
 		ResponseBean rb=new ResponseBean();
-		rb.setMsg(MessageConstant.OBJECT_CREATED_SUCCESSFULLY+student.getId());
+		rb.setMsg(MessageConstant.OBJECT_CREATED_SUCCESSFULLY+student.getRollno());
 		return rb;
 	}
 	

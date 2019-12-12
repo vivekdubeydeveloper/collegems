@@ -11,7 +11,7 @@ import com.college.student.dao.StudentDAO;
 import com.college.student.entity.Student;
 import com.college.student.exception.StudentNotFound;
 import com.college.student.service.StudentService;
-import com.college.subject.util.MessageConstant;
+import com.college.student.util.MessageConstant;
 
 @Service
 public class StudentServiceImpl implements StudentService {
