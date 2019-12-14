@@ -25,7 +25,6 @@
 		<!-- <module>student</module> <module>subject</module> <module>app-main</module> 
 			<module>appstarter</module> -->
 		<module>subject</module>
-		<module>student</module>
 		<module>apigateway</module>
 		<module>servicediscovery</module>
 		<module>student-producer</module>
