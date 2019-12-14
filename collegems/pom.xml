@@ -28,6 +28,8 @@
 		<module>student</module>
 		<module>apigateway</module>
 		<module>servicediscovery</module>
+		<module>student-producer</module>
+		<module>student-consumer</module>
 	</modules>
 	
 </project>
