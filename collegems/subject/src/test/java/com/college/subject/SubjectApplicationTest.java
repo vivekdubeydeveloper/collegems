@@ -24,8 +24,8 @@ public class SubjectApplicationTest {
 	public void testgetSubjectsSuccess() {
 		 RestTemplate restTemplate = new RestTemplate();
 	     final String url = "http://localhost:"+randomServerPort+"/subject/api/v1/subjects";
-	     ResponseEntity<List> employeesEntity= restTemplate.getForEntity(url, List.class);
-	     
+	     @SuppressWarnings("rawtypes")
+		ResponseEntity<List> employeesEntity= restTemplate.getForEntity(url, List.class);
 	     Assert.assertEquals(200, employeesEntity.getStatusCodeValue());
 	}
 

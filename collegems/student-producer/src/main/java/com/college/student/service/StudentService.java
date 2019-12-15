@@ -2,7 +2,6 @@ package com.college.student.service;
 
 import java.util.List;
 
-import com.college.student.entity.KafkaTransaction;
 import com.college.student.entity.Student;
 import com.college.student.model.ResponseBean;
 

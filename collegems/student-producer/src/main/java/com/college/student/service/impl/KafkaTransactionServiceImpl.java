@@ -17,7 +17,6 @@ public class KafkaTransactionServiceImpl implements KafkaTransactionService {
 
 	@Override
 	public KafkaTransaction getTransactionById(String transactionid) {
-		// TODO Auto-generated method stub
 		return ktDAO.findById(transactionid).orElseThrow(()->new TransactionNotFound(MessageConstant.NO_TRANSACTION_FOUND));
 	}
 
