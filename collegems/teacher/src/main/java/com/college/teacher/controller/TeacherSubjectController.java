@@ -17,6 +17,9 @@ import com.college.teacher.model.ResponseBean;
 import com.college.teacher.service.TeacherService;
 import com.college.teacher.util.MessageConstant;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+@Api(value="TeacherSubjectController",tags= {"Represent Teacher Subject Relationship"})
 @RestController
 @RequestMapping("/api/v1")
 public class TeacherSubjectController {
@@ -27,17 +30,19 @@ public class TeacherSubjectController {
 	@Autowired
 	RestTemplate restTemplate;
 
+	@ApiOperation(value = "Fetch subject of teacher", response = Subject.class)
 	@GetMapping("/teachers/{id}/subjects")
-	@ResponseStatus(code = HttpStatus.CREATED)
+	@ResponseStatus(code = HttpStatus.OK)
 	public Subject getTeacherSubject(@PathVariable("id") int id) {
 		Teacher dbTeacher = teacherService.getTeacher(id);
-		String url = "http://localhost:8080/subjects/" + dbTeacher.getSubjectId();
+		String url = "http://localhost:8081/subject/api/v1/subjects/" + dbTeacher.getSubjectId();
 		Subject subject = restTemplate.getForObject(url, Subject.class);
 		return subject;
 	}
 
+	@ApiOperation(value = "Update subject of teacher", response = ResponseBean.class)
 	@PutMapping("/teachers/{id}/subjects")
-	@ResponseStatus(code = HttpStatus.CREATED)
+	@ResponseStatus(code = HttpStatus.OK)
 	public ResponseBean addTeacherSubject(@RequestBody Teacher teacher, @PathVariable("id") int id) {
 		Teacher dbTeacher = teacherService.getTeacher(id);
 		dbTeacher.setSubjectId(teacher.getSubjectId());

@@ -44,14 +44,14 @@ public class SubjectController {
 		return subjectService.getSubjects();
 	}
 	
-	@ApiOperation(value = "Fetch subject on the base of subject id", response = Iterable.class)
+	@ApiOperation(value = "Fetch subject on the base of subject id", response = Subject.class)
 	@GetMapping("/subjects/{id}")
 	@ResponseStatus(code=HttpStatus.OK)
 	public Subject getSubject(@PathVariable("id") int id) {
 		return subjectService.getSubject(id);
 	}
 	
-	@ApiOperation(value = "Add subject", response = Iterable.class)
+	@ApiOperation(value = "Add subject", response = ResponseBean.class)
 	@PostMapping("/subjects")
 	@ResponseStatus(code=HttpStatus.CREATED)
 	public ResponseBean addSubject(@RequestBody Subject subject) {
@@ -61,7 +61,7 @@ public class SubjectController {
 		return rb;
 	}
 	
-	@ApiOperation(value = "Update subject", response = Iterable.class)
+	@ApiOperation(value = "Update subject", response = ResponseBean.class)
 	@PutMapping("/subjects")
 	@ResponseStatus(code=HttpStatus.OK)
 	public ResponseBean updateSubject(@RequestBody Subject subject) {
@@ -71,7 +71,7 @@ public class SubjectController {
 		return rb;
 	}
 	
-	@ApiOperation(value = "Delete subject", response = Iterable.class)
+	@ApiOperation(value = "Delete subject", response = ResponseBean.class)
 	@DeleteMapping("/subjects/{id}")
 	@ResponseStatus(code=HttpStatus.OK)
 	public ResponseBean deleteSubjectById(@PathVariable("id") int id) {

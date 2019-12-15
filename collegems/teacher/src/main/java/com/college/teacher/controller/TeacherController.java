@@ -20,6 +20,9 @@ import com.college.teacher.model.ResponseBean;
 import com.college.teacher.service.TeacherService;
 import com.college.teacher.util.MessageConstant;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+@Api(value="TeacherController",tags= {"Represent Teacher Resource"})
 @RestController
 @RequestMapping("/api/v1")
 public class TeacherController {
@@ -30,18 +33,21 @@ public class TeacherController {
 	@Autowired
 	RestTemplate restTemplate;
 
+	@ApiOperation(value = "Fetch all the teachers", response = Iterable.class)
 	@GetMapping("/teachers")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Teacher> getTeachers() {
 		return teacherService.getTeachers();
 	}
 
+	@ApiOperation(value = "Fetch teacher on the base of teacher id", response = Teacher.class)
 	@GetMapping("/teachers/{id}")
 	@ResponseStatus(code = HttpStatus.OK)
 	public Teacher getTeacher(@PathVariable("id") int id) {
 		return teacherService.getTeacher(id);
 	}
 
+	@ApiOperation(value = "Add Teacher", response = ResponseBean.class)
 	@PostMapping("/teachers")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ResponseBean addTeacher(@RequestBody Teacher teacher) {
@@ -51,6 +57,7 @@ public class TeacherController {
 		return rb;
 	}
 
+	@ApiOperation(value = "Update Teacher", response = ResponseBean.class)
 	@PutMapping("/teachers")
 	@ResponseStatus(code = HttpStatus.OK)
 	public ResponseBean updateTeacher(@RequestBody Teacher teacher) {
@@ -60,6 +67,7 @@ public class TeacherController {
 		return rb;
 	}
 
+	@ApiOperation(value = "Delete teacher on the base of teacher id", response = ResponseBean.class)
 	@DeleteMapping("/teachers/{id}")
 	@ResponseStatus(code = HttpStatus.OK)
 	public ResponseBean deleteTeacherById(@PathVariable("id") int id) {

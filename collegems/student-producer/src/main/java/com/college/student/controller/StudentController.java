@@ -20,6 +20,10 @@ import com.college.student.entity.Student;
 import com.college.student.model.ResponseBean;
 import com.college.student.service.StudentService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(value="SubjectController",tags= {"Represent Student Resource"})
 @RestController
 @RequestMapping("/api/v1")
 @RefreshScope
@@ -37,33 +41,35 @@ public class StudentController {
 	@Value("${topic.delete.student.id}")
 	String deleteStudentTopic;
 	
+	@ApiOperation(value = "Fetch all the students", response = Iterable.class)
 	@GetMapping("/students")
 	@ResponseStatus(code=HttpStatus.OK)
 	public List<Student> getStudents() {
 		return studentService.getStudents();
 	}
 	
-	
+	@ApiOperation(value = "Fetch student on the base of id", response = Student.class)
 	@GetMapping("/students/{id}")
 	@ResponseStatus(code=HttpStatus.OK)
 	public Student getStudent(@PathVariable("id") int id) {
 		return studentService.getStudent(id);
 	}
 	
-	
+	@ApiOperation(value = "Add student", response = ResponseBean.class)
 	@PostMapping("/students")
 	@ResponseStatus(code=HttpStatus.CREATED)
 	public ResponseBean addStudent(@RequestBody Student student) {
 		return studentService.addUpdateStudent(student,createStudentTopic);
 	}
 	
-	
+	@ApiOperation(value = "Update student", response = ResponseBean.class)
 	@PutMapping("/students")
 	@ResponseStatus(code=HttpStatus.OK)
 	public ResponseBean updateStudent(@RequestBody Student student) {
 		return studentService.addUpdateStudent(student,updateStudentTopic);
 	}
 	
+	@ApiOperation(value = "Delete student on the base of id", response = ResponseBean.class)
 	@DeleteMapping("/students/{id}")
 	@ResponseStatus(code=HttpStatus.OK)
 	public ResponseBean deleteStudentById(@PathVariable("id") int id) {
