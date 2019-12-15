@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 public class ConfigServerApplication {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		SpringApplication.run(ConfigServerApplication.class, args);
 	}
 

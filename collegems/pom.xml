@@ -24,12 +24,13 @@
 		<module>teacher</module>
 		<!-- <module>student</module> <module>subject</module> <module>app-main</module> 
 			<module>appstarter</module> -->
-		<module>subject</module>
-		<module>apigateway</module>
 		<module>servicediscovery</module>
+		<module>config-server</module>
+		<module>apigateway</module>	
+		<module>subject</module>
 		<module>student-producer</module>
 		<module>student-consumer</module>
-		<module>config-server</module>
+		
 	</modules>
 	
 </project>

@@ -11,7 +11,6 @@
 	<name>config-server</name>
 	<description>Configuration Management</description>
 	<groupId>com.college.configserver</groupId>
-	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
 		<spring-cloud.version>Greenwich.SR4</spring-cloud.version>
@@ -48,4 +47,20 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<version>1.0.0</version>
 </project>

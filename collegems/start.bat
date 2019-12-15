@@ -1,7 +1,7 @@
 cd servicediscovery/target
-java -cp servicediscovery-0.0.1-SNAPSHOT.jar com.college.servicediscovery.SpringEurekaServerApplication
+start java -jar servicediscovery-0.0.1-SNAPSHOT.jar
 cd ../..
 cd apigateway/target
-java -cp apigateway-0.0.1-SNAPSHOT.jar com.college.apigateway.ApiGatewayApplication
+start java -jar apigateway-0.0.1-SNAPSHOT.jar
 cd ../..
 date

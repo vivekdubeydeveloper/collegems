@@ -1,9 +1,5 @@
 package com.college.student.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -23,24 +19,17 @@ public class StudentServiceImpl implements StudentService {
 	public void addStudent(Student student) {
 		studentDAO.save(student);
 	}
-	
-	
+
 	@KafkaListener(topics = "${topic.update.student}")
 	@Override
 	public void updateStudent(Student student) {
 		studentDAO.save(student);
 	}
 
-
 	@KafkaListener(topics = "${topic.delete.student.id}")
 	@Override
 	public void deleteStudentById(Student student) {
-		// TODO Auto-generated method stub
 		studentDAO.deleteById(student.getRollno());
 	}
-
-
-		
-
 
 }

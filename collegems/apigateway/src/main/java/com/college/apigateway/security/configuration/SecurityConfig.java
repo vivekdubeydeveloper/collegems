@@ -24,8 +24,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	            throws Exception 
 	    {
 	        auth.inMemoryAuthentication()
-	            .withUser("admin")
-	            .password("{noop}password")
+	            .withUser("collegeapi")
+	            .password("{noop}CollegeApi@12345")
 	            .roles("USER");
 	    }
 }

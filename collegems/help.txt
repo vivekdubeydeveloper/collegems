@@ -1,0 +1,4 @@
+spring security basic auth in api gateway
+username=collegeapi
+password=CollegeApi@12345
+endpoint api:http://localhost:9090/
