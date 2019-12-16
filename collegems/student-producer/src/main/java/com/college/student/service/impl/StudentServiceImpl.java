@@ -74,7 +74,6 @@ public class StudentServiceImpl implements StudentService {
 
 		String msg = MessageConstant.DATA_PUSHED_IN_KAFKA + student.getTransactionId();
 		rb.setMsg(msg);
-		;
 		return rb;
 	}
 

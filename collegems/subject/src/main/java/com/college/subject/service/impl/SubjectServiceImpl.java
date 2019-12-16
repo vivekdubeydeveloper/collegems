@@ -39,7 +39,8 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public void deleteSubjectById(int id) {
-		subjectDAO.deleteById(id);
+		Subject subject=getSubject(id);
+		subjectDAO.delete(subject);
 	}
 
 }

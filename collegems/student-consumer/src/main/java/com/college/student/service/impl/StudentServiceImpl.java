@@ -1,5 +1,7 @@
 package com.college.student.service.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -29,7 +31,11 @@ public class StudentServiceImpl implements StudentService {
 	@KafkaListener(topics = "${topic.delete.student.id}")
 	@Override
 	public void deleteStudentById(Student student) {
-		studentDAO.deleteById(student.getRollno());
+		Optional<Student>studentO=studentDAO.findById(student.getRollno());
+		if(studentO.isPresent()) {
+			studentDAO.delete(studentO.get());
+		}
+		
 	}
 
 }
