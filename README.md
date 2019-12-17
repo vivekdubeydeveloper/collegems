@@ -10,6 +10,31 @@ Prerequisite for project
 8)Postman/Curl(One mandatory)
 9)Internet Connection
 
+Install Open JDK8 on Ubuntu
+sudo add-apt-repository ppa:openjdk-r/ppa
+sudo apt-get update
+sudo apt-get install openjdk-8-jdk
+if multiple jdk then run the below command 
+sudo update-alternatives --config java
+select no:<No>
+
+Install Maven on ubuntu
+sudo apt install maven
+mvn -version
+
+
+Install mysql server
+
+sudo apt-get update
+sudo apt-get install mysql-server
+sudo ufw enable
+sudo ufw allow mysql
+sudo systemctl start mysql
+sudo mysql
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'very_strong_password';
+FLUSH PRIVILEGES;
+
 I have tested this code on Ubuntu.
 
 Steps:
