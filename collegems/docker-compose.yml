@@ -10,9 +10,4 @@ services:
     image: servicediscovery
     ports:
      - "8761:8761"
-  apigateway:
-    image: apigateway
-    depends_on:
-     - servicediscovery
-    ports:
-     - "8080:8080"
+ 
