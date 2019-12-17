@@ -21,8 +21,6 @@ nohup java -jar $PROJECT_PATH/teacher/target/teacher-1.0.0.jar --server.port=808
 nohup java -jar $PROJECT_PATH/student-producer/target/student-producer-1.0.0.jar --server.port=8087 &
 nohup java -jar $PROJECT_PATH/student-consumer/target/student-consumer-1.0.0.jar  --server.port=8088 &
 
-
-
 echo "waiting for 30 second"
 sleep 30
 disown
