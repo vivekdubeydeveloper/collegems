@@ -2,6 +2,8 @@ version: '2'
 services:
   config-server:
     image: config-server
+    links:
+    - eurekaserver
     ports:
      - "8888:8888"
   servicediscovery:
