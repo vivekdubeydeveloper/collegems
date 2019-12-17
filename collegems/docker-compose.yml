@@ -8,8 +8,6 @@ services:
      - "8888:8888"
   servicediscovery:
     image: servicediscovery
-    depends_on:
-     - config-server
     ports:
      - "8761:8761"
   apigateway:
