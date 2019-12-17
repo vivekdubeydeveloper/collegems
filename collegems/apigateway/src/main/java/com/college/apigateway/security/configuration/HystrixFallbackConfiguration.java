@@ -22,7 +22,7 @@ public class HystrixFallbackConfiguration {
             @Override
             public String getRoute() {
                 // Might be confusing: it's the serviceId property and not the route
-                return "subject";
+                return "SUBJECT";
             }
 
             @Override
