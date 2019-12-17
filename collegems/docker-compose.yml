@@ -13,6 +13,6 @@ services:
   apigateway:
     image: apigateway
     depends_on:
-     - eureka-server
+     - servicediscovery
     ports:
      - "8080:8080"
