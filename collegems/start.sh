@@ -15,9 +15,9 @@ nohup java -jar -Dserver.port=8081 $PROJECT_PATH/subject/target/subject-1.0.0.ja
 disown
 nohup java -jar -Dserver.port=8082 $PROJECT_PATH/teacher/target/teacher-1.0.0.jar &
 disown
-nohup java -jar -Dserver.port=8083 $PROJECT_PATH/student-producer/target/student-producer-1.0.0.jar  &
+nohup java -jar -Dserver.port=8083 $PROJECT_PATH/student-producer/target/student-producer-1.0.0.jar &
 disown
-nohup java -jar -Dserver.port=8084 $PROJECT_PATH/student-consumer/target/student-consumer-1.0.0.jar  &
+nohup java -jar -Dserver.port=8084 $PROJECT_PATH/student-consumer/target/student-consumer-1.0.0.jar &
 disown
 nohup java -jar -Dserver.port=8085 $PROJECT_PATH/subject/target/subject-1.0.0.jar &
 disown
