@@ -1,11 +1,11 @@
 # collegems
 Prerequisite for project
 1)JDK 1.8
-2)Maven
-3)Mysql 
+2)Maven 3.6.0
+3)Mysql 5.7.28
 4)Zookeeper(Should be running)
 5)Kafka(Should be running)
-6)Docker
+6)Docker 18.09.7
 7)GIT
 8)Postman/Curl(One mandatory)
 9)Internet Connection
@@ -34,6 +34,9 @@ sudo mysql
 
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'very_strong_password';
 FLUSH PRIVILEGES;
+
+Install Kafka
+wget http://mirrors.estointernet.in/apache/kafka/2.2.0/kafka_2.11-2.2.0.tgz
 
 I have tested this code on Ubuntu.
 
