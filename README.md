@@ -35,8 +35,31 @@ sudo mysql
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'very_strong_password';
 FLUSH PRIVILEGES;
 
-Install Kafka
-wget http://mirrors.estointernet.in/apache/kafka/2.2.0/kafka_2.11-2.2.0.tgz
+Install Kafka and zookeeper
+wget http://www-us.apache.org/dist/kafka/2.2.1/kafka_2.12-2.2.1.tgz
+tar xzf kafka_2.12-2.2.1.tgz
+mv kafka_2.12-2.2.1 /usr/local/kafka
+cd /usr/local/kafka
+bin/zookeeper-server-start.sh config/zookeeper.properties
+bin/kafka-server-start.sh config/server.properties
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic testTopic
+bin/kafka-topics.sh --list --zookeeper localhost:2181
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic testTopic
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic testTopic --from-beginning
+
+install Docker
+sudo apt install docker.io
+sudo usermod -aG docker ${USER}
+
+install Docker compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+docker-compose --version
+
+Install GIT
+sudo apt-get install git
+
 
 I have tested this code on Ubuntu.
 
@@ -56,7 +79,6 @@ killall -9 java
 10)Now run the dockerimagebuilder.sh,it will create docker image of all the microservices.
 11)Run dockerimagerunner.sh,it will run all the docker images
 12)Again test all the api using postman collection.
-
 
 
 
