@@ -1,6 +1,7 @@
 package com.college.teacher.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,13 +30,19 @@ public class TeacherSubjectController {
 
 	@Autowired
 	RestTemplate restTemplate;
-
+	
+	@Value("${subject.service.base.url}")
+	private String subjectApiEndpoint;
+	
+	@Value("${get.subject.url}")
+	private String getSubjectEndpoint;
+	
 	@ApiOperation(value = "Fetch subject of teacher", response = Subject.class)
 	@GetMapping("/teachers/{id}/subjects")
 	@ResponseStatus(code = HttpStatus.OK)
 	public Subject getTeacherSubject(@PathVariable("id") int id) {
 		Teacher dbTeacher = teacherService.getTeacher(id);
-		String url = "http://localhost:8081/subject/api/v1/subjects/" + dbTeacher.getSubjectId();
+		String url =subjectApiEndpoint+getSubjectEndpoint+ dbTeacher.getSubjectId();
 		Subject subject = restTemplate.getForObject(url, Subject.class);
 		return subject;
 	}
