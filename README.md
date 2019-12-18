@@ -80,5 +80,18 @@ killall -9 java
 11)Run dockerimagerunner.sh,it will run all the docker images
 12)Again test all the api using postman collection.
 
+Important
+Swagger URl
+http://localhost:8081/subject/swagger-ui.html
+http://localhost:8081/subject/v2/api-docs
+
+http://localhost:8082/teacher/swagger-ui.html
+http://localhost:8082/teacher/v2/api-docs
+
+http://localhost:8083/student/swagger-ui.html
+http://localhost:8082/student/v2/api-docs
+
+
+
 
 
