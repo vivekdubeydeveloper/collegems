@@ -55,7 +55,7 @@ public class TeacherSubjectController {
 		dbTeacher.setSubjectId(teacher.getSubjectId());
 		teacherService.addUpdateTeacher(dbTeacher);
 		ResponseBean rb = new ResponseBean();
-		rb.setMsg(MessageConstant.SUBJECT_UPDATED_SUCCESSFULLY + teacher.getEmpid());
+		rb.setMsg(MessageConstant.SUBJECT_UPDATED_SUCCESSFULLY + dbTeacher.getEmpid());
 		return rb;
 	}
 
