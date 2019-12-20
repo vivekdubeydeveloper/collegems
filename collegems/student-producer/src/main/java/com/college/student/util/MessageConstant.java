@@ -1,7 +1,9 @@
 package com.college.student.util;
 
-public class MessageConstant {
-	
+public final class MessageConstant {
+	private MessageConstant() {
+		
+	}
 	public static final String NO_SUBJECT_FOUND="No Student Found For This Id";
 	public static final String NO_TRANSACTION_FOUND="No Transaction Found For This Id";
 	

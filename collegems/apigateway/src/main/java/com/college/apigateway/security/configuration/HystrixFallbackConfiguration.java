@@ -43,7 +43,12 @@ public class HystrixFallbackConfiguration {
                     }
 
                     @Override
-                    public void close() {}
+                    public void close() {
+                    	/*
+                    	 * 
+                    	 * 
+                    	 */
+                    }
 
                     @Override
                     public InputStream getBody() throws IOException {

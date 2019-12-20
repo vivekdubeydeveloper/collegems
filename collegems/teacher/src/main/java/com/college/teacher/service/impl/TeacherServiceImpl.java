@@ -22,7 +22,7 @@ public class TeacherServiceImpl implements TeacherService {
 	@Override
 	public List<Teacher> getTeachers(){
 		List<Teacher> teachers=new ArrayList<>();
-		Consumer<Teacher> sConsumer=s->teachers.add(s);
+		Consumer<Teacher> sConsumer=teachers::add;
 		teacherDAO.findAll().forEach(sConsumer);
 		return teachers;
 	}

@@ -43,8 +43,7 @@ public class TeacherSubjectController {
 	public Subject getTeacherSubject(@PathVariable("id") int id) {
 		Teacher dbTeacher = teacherService.getTeacher(id);
 		String url =subjectApiEndpoint+getSubjectEndpoint+ dbTeacher.getSubjectId();
-		Subject subject = restTemplate.getForObject(url, Subject.class);
-		return subject;
+		return restTemplate.getForObject(url, Subject.class);
 	}
 
 	@ApiOperation(value = "Update subject of teacher", response = ResponseBean.class)

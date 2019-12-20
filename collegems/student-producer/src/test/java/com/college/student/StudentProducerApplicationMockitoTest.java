@@ -87,28 +87,4 @@ public class StudentProducerApplicationMockitoTest {
 		ResponseBean result=studentController.updateStudent(student);
 		Assert.assertTrue(result.getMsg().contains(MessageConstant.DATA_PUSHED_IN_KAFKA));
 	}
-	
-	
-	/*
-	@Test
-	public void testDeleteStudentById() {
-		Student student = new Student();
-		student.setRollno(1);
-		
-		
-		ResponseBean rb=new ResponseBean();
-		String msg = MessageConstant.DATA_PUSHED_IN_KAFKA;
-		rb.setMsg(msg);
-		
-		Mockito.when(studentService.deleteStudentById(student, deleteStudentTopic)).thenReturn(rb);
-		ResponseBean result=studentController.deleteStudentById(1);
-		Assert.assertTrue(result.getMsg().contains(MessageConstant.DATA_PUSHED_IN_KAFKA));
-	}
-
-	@Test(expected = SubjectNotFound.class)
-	public void testGetSubjectNotFound() {
-		final String url = endPointPrefix + randomServerPort + endPointSuffix + "/subjects/999";
-		ResponseEntity<ResponseBean> employeesEntity = restTemplate.getForEntity(url, ResponseBean.class);
-	}
-	*/
 }

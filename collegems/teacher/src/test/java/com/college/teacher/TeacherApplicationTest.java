@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -21,14 +22,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
 import com.college.teacher.entity.Teacher;
+import com.college.teacher.exception.TeacherNotFound;
 import com.college.teacher.model.ResponseBean;
+import com.college.teacher.service.TeacherService;
 import com.college.teacher.util.MessageConstant;
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class TeacherApplicationTest {
 
+	private static final String BASE_URL = "/teachers";
+	
 	@Value("${endpoint.prefix}")
 	private String endPointPrefix;
 
@@ -39,6 +43,9 @@ public class TeacherApplicationTest {
 	int randomServerPort;
 
 	RestTemplate restTemplate;
+	
+	@Autowired
+	TeacherService teacherService;
 
 	@Before
 	public void init() {
@@ -47,7 +54,7 @@ public class TeacherApplicationTest {
 
 	@Test
 	public void testGetTeachers() {
-		final String url = endPointPrefix + randomServerPort + endPointSuffix + "/teachers";
+		final String url = endPointPrefix + randomServerPort + endPointSuffix + BASE_URL;
 		@SuppressWarnings("rawtypes")
 		ResponseEntity<List> employeesEntity = restTemplate.getForEntity(url, List.class);
 		Assert.assertEquals(200, employeesEntity.getStatusCodeValue());
@@ -55,21 +62,22 @@ public class TeacherApplicationTest {
 
 	@Test
 	public void testGetTeacher() {
-		final String url = endPointPrefix + randomServerPort + endPointSuffix + "/teachers/1";
+		final String url = endPointPrefix + randomServerPort + endPointSuffix + BASE_URL + "/1";
 		ResponseEntity<Teacher> employeesEntity = restTemplate.getForEntity(url, Teacher.class);
 		String expected = "Rajesh";
 		Assert.assertEquals(expected, employeesEntity.getBody().getName());
 	}
 
-	/*@Test(expected = SubjectNotFound.class)
-	public void testGetSubjectNotFound() {
-		final String url = endPointPrefix + randomServerPort + endPointSuffix + "/subjects/999";
-		ResponseEntity<ResponseBean> employeesEntity = restTemplate.getForEntity(url, ResponseBean.class);
-	}*/
+	
+	@Test(expected = TeacherNotFound.class)
+	public void testTeacherNotFound() {
+		teacherService.getTeacher(9999);
+	}
+	 
 
 	@Test
 	public void testAddTeacher() {
-		final String url = endPointPrefix + randomServerPort + endPointSuffix + "/teachers";
+		final String url = endPointPrefix + randomServerPort + endPointSuffix + BASE_URL;
 		Teacher teacher = new Teacher();
 		teacher.setName("Shanker");
 		teacher.setAddress("Dubai");
@@ -80,7 +88,7 @@ public class TeacherApplicationTest {
 
 	@Test
 	public void testUpdateTeacher() {
-		final String url = endPointPrefix + randomServerPort + endPointSuffix + "/teachers";
+		final String url = endPointPrefix + randomServerPort + endPointSuffix + BASE_URL;
 		Teacher teacher = new Teacher();
 		teacher.setEmpid(3);
 		teacher.setName("Mukund");
@@ -99,7 +107,7 @@ public class TeacherApplicationTest {
 	@Ignore
 	@Test
 	public void testDeleteTeacherById() {
-		final String url = endPointPrefix + randomServerPort + endPointSuffix + "/teachers/5";
+		final String url = endPointPrefix + randomServerPort + endPointSuffix + BASE_URL + "/5";
 
 		HttpHeaders requestHeaders = getHttpHeaders();
 		HttpEntity<Integer> requestEntity = new HttpEntity<>(requestHeaders);
@@ -114,6 +122,5 @@ public class TeacherApplicationTest {
 		requestHeaders.setContentType(MediaType.APPLICATION_JSON);
 		return requestHeaders;
 	}
-	
 
 }

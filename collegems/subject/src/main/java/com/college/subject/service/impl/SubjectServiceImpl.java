@@ -22,7 +22,7 @@ public class SubjectServiceImpl implements SubjectService {
 	@Override
 	public List<Subject> getSubjects(){
 		List<Subject> subjects=new ArrayList<>();
-		Consumer<Subject> sConsumer=s->subjects.add(s);
+		Consumer<Subject> sConsumer=subjects::add;
 		subjectDAO.findAll().forEach(sConsumer);
 		return subjects;
 	}

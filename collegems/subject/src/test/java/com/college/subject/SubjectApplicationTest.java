@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -23,12 +24,15 @@ import org.springframework.web.client.RestTemplate;
 import com.college.subject.entity.Subject;
 import com.college.subject.exception.SubjectNotFound;
 import com.college.subject.model.ResponseBean;
+import com.college.subject.service.SubjectService;
 import com.college.subject.util.MessageConstant;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class SubjectApplicationTest {
 
+	private static final String BASE_URL = "/subjects";
+	
 	@Value("${endpoint.prefix}")
 	private String endPointPrefix;
 
@@ -39,6 +43,9 @@ public class SubjectApplicationTest {
 	int randomServerPort;
 
 	RestTemplate restTemplate;
+	
+	@Autowired
+	SubjectService subjectService;
 
 	@Before
 	public void init() {
@@ -47,7 +54,7 @@ public class SubjectApplicationTest {
 
 	@Test
 	public void testGetSubjects() {
-		final String url = endPointPrefix + randomServerPort + endPointSuffix + "/subjects";
+		final String url = endPointPrefix + randomServerPort + endPointSuffix +BASE_URL;
 		@SuppressWarnings("rawtypes")
 		ResponseEntity<List> employeesEntity = restTemplate.getForEntity(url, List.class);
 		Assert.assertEquals(200, employeesEntity.getStatusCodeValue());
@@ -56,21 +63,20 @@ public class SubjectApplicationTest {
 	@Ignore
 	@Test
 	public void testGetSubject() {
-		final String url = endPointPrefix + randomServerPort + endPointSuffix + "/subjects/1";
+		final String url = endPointPrefix + randomServerPort + endPointSuffix +BASE_URL+ "/1";
 		ResponseEntity<Subject> employeesEntity = restTemplate.getForEntity(url, Subject.class);
 		String expected = "Math";
 		Assert.assertEquals(expected, employeesEntity.getBody().getName());
 	}
 
-	/*@Test(expected = SubjectNotFound.class)
-	public void testGetSubjectNotFound() {
-		final String url = endPointPrefix + randomServerPort + endPointSuffix + "/subjects/999";
-		ResponseEntity<ResponseBean> employeesEntity = restTemplate.getForEntity(url, ResponseBean.class);
-	}*/
+	@Test(expected = SubjectNotFound.class)
+	public void testSubjectNotFound() {
+		subjectService.getSubject(999999);
+	}
 
 	@Test
 	public void testAddSubject() {
-		final String url = endPointPrefix + randomServerPort + endPointSuffix + "/subjects";
+		final String url = endPointPrefix + randomServerPort + endPointSuffix +BASE_URL;
 		Subject subject = new Subject();
 		subject.setName("MFCS");
 		ResponseEntity<ResponseBean> employeesEntity = restTemplate.postForEntity(url, subject, ResponseBean.class);
@@ -79,7 +85,7 @@ public class SubjectApplicationTest {
 
 	@Test
 	public void testUpdateSubject() {
-		final String url = endPointPrefix + randomServerPort + endPointSuffix + "/subjects";
+		final String url = endPointPrefix + randomServerPort + endPointSuffix +BASE_URL;
 		Subject subject = new Subject();
 		subject.setId(6);
 		subject.setName("CBNST");
@@ -96,7 +102,7 @@ public class SubjectApplicationTest {
 	@Ignore
 	@Test
 	public void testDeleteSubjectById() {
-		final String url = endPointPrefix + randomServerPort + endPointSuffix + "/subjects/7";
+		final String url = endPointPrefix + randomServerPort + endPointSuffix +BASE_URL+"/7";
 
 		HttpHeaders requestHeaders = getHttpHeaders();
 		HttpEntity<Integer> requestEntity = new HttpEntity<>(requestHeaders);

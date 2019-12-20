@@ -38,7 +38,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public List<Student> getStudents() {
 		List<Student> students = new ArrayList<>();
-		studentDAO.findAll().forEach(s -> students.add(s));
+		studentDAO.findAll().forEach(students::add);
 		return students;
 	}
 
@@ -49,36 +49,15 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public ResponseBean addUpdateStudent(Student student, String topic) {
-		ResponseBean rb = new ResponseBean();
-		String transactionId = tIdGenerator.get();
-		KafkaTransaction kt = saveKafkaTransaction(transactionId);
-
-		student.setTransactionId(transactionId);
-		ListenableFuture<SendResult<String, Student>> future = kafkaTemplate.send(topic, student);
-
-		future.addCallback(new ListenableFutureCallback<SendResult<String, Student>>() {
-
-			@Override
-			public void onSuccess(SendResult<String, Student> result) {
-				kt.setStatus(MessageConstant.KAFKA_TRANSACTION_COMPLETED);
-				ktDAO.save(kt);
-			}
-
-			@Override
-			public void onFailure(Throwable ex) {
-				kt.setStatus(MessageConstant.KAFKA_TRANSACTION_FAILED);
-				ktDAO.save(kt);
-			}
-
-		});
-
-		String msg = MessageConstant.DATA_PUSHED_IN_KAFKA + student.getTransactionId();
-		rb.setMsg(msg);
-		return rb;
+		return pushDataInKafka(student,topic);
 	}
 
 	@Override
 	public ResponseBean deleteStudentById(Student student, String topic) {
+		return pushDataInKafka(student,topic);
+	}
+	
+	private ResponseBean pushDataInKafka(Student student, String topic) {
 		ResponseBean rb = new ResponseBean();
 		String transactionId = tIdGenerator.get();
 		KafkaTransaction kt = saveKafkaTransaction(transactionId);
@@ -90,14 +69,12 @@ public class StudentServiceImpl implements StudentService {
 
 			@Override
 			public void onSuccess(SendResult<String, Student> result) {
-				System.out.println("Success Method Call");
 				kt.setStatus(MessageConstant.KAFKA_TRANSACTION_COMPLETED);
 				ktDAO.save(kt);
 			}
 
 			@Override
 			public void onFailure(Throwable ex) {
-				System.out.println("Fail Method Call");
 				kt.setStatus(MessageConstant.KAFKA_TRANSACTION_FAILED);
 				ktDAO.save(kt);
 			}
@@ -106,7 +83,6 @@ public class StudentServiceImpl implements StudentService {
 
 		String msg = MessageConstant.DATA_PUSHED_IN_KAFKA + student.getTransactionId();
 		rb.setMsg(msg);
-		;
 		return rb;
 	}
 
