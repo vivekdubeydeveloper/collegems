@@ -28,6 +28,7 @@
 		<module>teacher</module>
 		<module>student-producer</module>
 		<module>student-consumer</module>
+		<module>monitoring</module>
 	</modules>
 	
 </project>

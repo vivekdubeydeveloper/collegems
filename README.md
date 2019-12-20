@@ -91,7 +91,7 @@ http://localhost:8082/teacher/v2/api-docs
 http://localhost:8083/student/swagger-ui.html
 http://localhost:8082/student/v2/api-docs
 
-
+http://localhost:8765/
 
 
 
