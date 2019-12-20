@@ -14,11 +14,7 @@ import de.codecentric.boot.admin.server.config.EnableAdminServer;
 public class MonitoringApplication {
 
 	public static void main(String[] args) {
-
-		 /*new SpringApplicationBuilder(MonitoringApplication.class)
-         .web(WebApplicationType.REACTIVE)
-         .run(args);*/
-		SpringApplication.run(MonitoringApplication.class,args);
+		SpringApplication.run(MonitoringApplication.class, args);
 	}
 
 }
