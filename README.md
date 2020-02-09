@@ -93,5 +93,7 @@ http://localhost:8082/student/v2/api-docs
 
 http://localhost:8765/
 
+GRANT ALL PRIVILEGES ON database_name.* TO 'root'@'%' identified by 'root';
+FLUSH PRIVILEGES;
 
 
